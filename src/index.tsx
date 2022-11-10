@@ -1,19 +1,27 @@
-import React from 'react';
+import { useState, createContext } from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import { HomePage } from './ui/home';
+import ReactTooltip from "react-tooltip";
+import "antd/dist/antd.min.css";
+import '../src/ui/style/index.css';
+
+
+const ProjectContext = createContext(null)
+const App = () => {
+  const [homepage, setHomepage] = useState(true);
+  const togglePage = (bool: boolean) => {
+    setHomepage(bool)
+  }
+  return (
+  <ProjectContext.Provider value={null}>
+    {homepage && <HomePage onTogglePage={togglePage} />}
+    <ReactTooltip/>
+
+  </ProjectContext.Provider>)
+}
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+root.render(<App />);
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
