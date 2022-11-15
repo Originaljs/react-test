@@ -1,12 +1,16 @@
 import { useState, useContext, useRef, useEffect } from "react";
 import { observer } from 'mobx-react-lite'
+import { ProjectContext } from "../..";
 
 export const CircuitView = observer(() => {
-
-    useEffect(() => { }, [])
+    const element = useRef<HTMLCanvasElement>(null)
+    const proj = useContext(ProjectContext).active
+    useEffect(() => {
+        proj.setCanvas(element.current as HTMLCanvasElement)
+     }, [])
     return (
         <>
-
+            <canvas ref={element} style={{position: "absolute"}}></canvas>
         </>
     )
 })

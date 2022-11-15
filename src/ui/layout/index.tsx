@@ -1,6 +1,7 @@
 import DockLayout, { LayoutData, TabGroup } from 'rc-dock'
 import "rc-dock/dist/rc-dock-dark.css";
 import { WindowType } from '../window/enums';
+import {CircuitView} from '../window/circuit'
 
 const DefaultGroup: TabGroup = {
     panelExtra: () => null!,
@@ -29,7 +30,7 @@ export const DefaultLayout: LayoutData = {
                     {
                         id: 'ui-circuit',
                         title: WindowType.CircuitView,
-                        content: <div />,
+                        content: <CircuitView />,
                         cached: true,
                         minWidth: 250,
                         minHeight: 250,
