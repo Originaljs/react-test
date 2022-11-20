@@ -10,7 +10,7 @@ export const CircuitView = observer(() => {
      }, [])
     return (
         <>
-            <canvas ref={element} style={{position: "absolute"}}></canvas>
+            <canvas ref={element} style={{position: "absolute",width:'100%',height:'100%'}}></canvas>
         </>
     )
 })

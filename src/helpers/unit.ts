@@ -1,25 +1,27 @@
 /* eslint-disable eqeqeq */
+
+import { BufferGeometry, BufferAttribute } from "three";
 //  两个时间戳作比较。得出距离现在的时间差
 export const calculateDiffTime = (
     startTime: number,
     endTime: number
 ): string => {
     let runTime = parseInt((endTime - startTime).toString());
-    
+
     let year = Math.floor(runTime / 86400 / 365);
     runTime = runTime % (86400 * 365);
-   
+
     let month = Math.floor(runTime / 86400 / 30);
     runTime = runTime % (86400 * 30);
-   
+
     let day = Math.floor(runTime / 86400);
     runTime = runTime % 86400;
-    
+
     let hour = Math.floor(runTime / 3600);
     runTime = runTime % 3600;
-   
+
     let minute = Math.floor(runTime / 60);
-   
+
     runTime = runTime % 60;
     let second = runTime;
     let result = {
@@ -69,3 +71,12 @@ export const calculateDiffTime = (
         }
     }
 };
+
+export const addBufferGeometry = (position: number[], index: number[]) => {
+    const geometry = new BufferGeometry()
+    const positionList = new Float32Array(position)
+    const indexList = new Uint16Array(index)
+    geometry.setAttribute('position', new BufferAttribute(positionList, 3))
+    geometry.index = new BufferAttribute(indexList, 1)
+    return geometry
+}

@@ -27,6 +27,9 @@ export class Project {
     @observable
     gridTextV: GridText[] = []
 
+    @observable
+    gridSub: number = 10
+
     readonly EventControl: MouseEventControl
 
     constructor() {
@@ -38,5 +41,10 @@ export class Project {
         (canvas.parentElement as HTMLElement).style.backgroundColor = "aliceblue";
         this.EventControl.setElement(canvas)
         this.renderer = new CircuitRenderer(this, canvas)
+    }
+    @action
+    setGridText(H: GridText[], V: GridText[]) {
+        this.gridTextH = H;
+        this.gridTextV = V;
     }
 }
