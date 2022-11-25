@@ -11,12 +11,12 @@ const ConnectorType = types.model({
     ground_spacing: types.number,
     claw_width: types.number,
     claw_gap: types.number,
-})
-    .actions((self) => ({
-        set: (key: Extract<keyof typeof self, string>, value: any) => {
-            Object.assign(self, { [key]: value });
-        },
-    }));
+}).actions((self) => ({
+    set: (key: Extract<keyof typeof self, string>, value: any) => {
+        Object.assign(self, { [key]: value });
+    },
+}));
+
 
 const PropModel = types.model({
     cross_width: types.number,
@@ -188,7 +188,7 @@ export class TransmonCross extends BaseComponent<typeof PropModel> {
                     },
             },
             {
-                cross_width: { unit: true,min: 0, default: 20 },
+                cross_width: { unit: true, min: 0, default: 20 },
                 cross_length: { unit: true, min: 0, default: 200 },
                 cross_gap: { unit: true, min: 0, default: 20 },
             },
