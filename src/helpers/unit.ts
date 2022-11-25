@@ -80,3 +80,15 @@ export const addBufferGeometry = (position: number[], index: number[]) => {
     geometry.index = new BufferAttribute(indexList, 1)
     return geometry
 }
+
+export const deleteTheTail = (str: string | number) => {
+    if (typeof str === "number") return str;
+
+    if (str.includes("nm")) {
+        return Number(str.slice(0, -2)) / 1000;
+    } else if (str.includes("um")) {
+        return Number(str.slice(0, -2));
+    } else {
+        return Number(str.slice(0, -2)) * 1000;
+    }
+};

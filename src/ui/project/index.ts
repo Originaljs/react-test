@@ -4,6 +4,7 @@ import { Mesh, Vector2, Vector3 } from 'three'
 import { CircuitRenderer } from "../../circuit/renderer";
 import DockLayout from 'rc-dock'
 import { MouseEventControl } from "../../circuit/MouseEventControl";
+import { BaseComponent } from "../window/components/base";
 
 export type GridText = {
     x: number | string
@@ -30,6 +31,8 @@ export class Project {
     @observable
     gridSub: number = 10
 
+    ids: WeakMap<CircuitComponentClass, number> = new WeakMap()
+
     readonly EventControl: MouseEventControl
 
     constructor() {
@@ -46,5 +49,17 @@ export class Project {
     setGridText(H: GridText[], V: GridText[]) {
         this.gridTextH = H;
         this.gridTextV = V;
+    }
+
+    assignName(component: BaseComponent) {
+        const CompClass = <CircuitComponentClass>component.constructor
+        let count = this.ids.get(CompClass)
+        if (!count) {
+            this.ids.set(CompClass, (count = 0))
+        } else {
+            this.ids.set(CompClass, ++count)
+        }
+
+        return `${CompClass.metaData.name}_${count}`
     }
 }
